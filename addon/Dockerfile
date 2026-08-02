@@ -9,8 +9,14 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base:20.0.1
 # compile against the same Node.js version and musl libc.
 FROM alpine:3.23 AS mcp-builder
 
+# Pin pnpm to the version that generated mcp-server/pnpm-lock.yaml
+# (lockfileVersion 9.0). An unpinned "latest" pulls pnpm 11+, which breaks
+# `pnpm install --frozen-lockfile` below: it enforces a minimum-release-age
+# supply-chain policy that rejects freshly published transitive deps, and it
+# no longer reads `pnpm.onlyBuiltDependencies` from package.json (needed so
+# native modules like better-sqlite3 build).
 RUN apk add --no-cache nodejs npm git build-base python3 && \
-    npm install -g pnpm
+    npm install -g pnpm@10.33.0
 
 WORKDIR /build
 
