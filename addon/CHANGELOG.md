@@ -1,3 +1,14 @@
+## 0.1.12
+
+### Fixes
+
+- Fix add-on Docker build failing at `pnpm install --frozen-lockfile`
+  - Commit the `mcp-server/pnpm-lock.yaml` lockfile (previously missing and gitignored)
+  - Pin pnpm to `10.33.0` in the Dockerfile so the build matches the committed lockfile
+    (unpinned pnpm 11+ rejected the lockfile via its minimum-release-age policy and no
+    longer honored `pnpm.onlyBuiltDependencies`)
+- Bump version to force the Supervisor to rebuild from the fixed source instead of a cached build
+
 ## 0.1.11
 
 ### Improvements
