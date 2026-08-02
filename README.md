@@ -21,7 +21,7 @@ Or manually:
 
 1. Go to **Settings** > **Add-ons** > **Add-on Store**
 2. Click the **three-dot menu** (top right) > **Repositories**
-3. Add: `https://github.com/dkmaker/hass-claude-code`
+3. Add: `https://github.com/TinkerBelle-Studio/hass-claude-code`
 4. Click **Save**, then refresh
 
 ### 2. Install the add-on
